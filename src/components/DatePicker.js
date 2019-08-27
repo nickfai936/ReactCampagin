@@ -16,7 +16,7 @@ const DatePickerInput = props => {
           autoOk
           disableToolbar
           variant="inline"
-          format="dd/MM/yyyy"
+          format="MM/dd/yyyy"
           margin="normal"
           id={props.id}
           label={props.label}

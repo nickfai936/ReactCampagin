@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "../styles/headerNav";
 import DatePickerInput from "./DatePicker";
 import SearchForm from "./SearchForm";
@@ -6,7 +6,7 @@ import SearchForm from "./SearchForm";
 const HeaderNave = props => {
   const classes = useStyles();
 
-  const [selectedDate, setSelectedDate] = React.useState({});
+  const [selectedDate, setSelectedDate] = useState({});
   const handleDateChange = (id, value) => {
     setSelectedDate(Object.assign({}, selectedDate, { [id]: value }));
   };

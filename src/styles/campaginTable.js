@@ -1,5 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
-  campaignTable: {}
+  tableHeader: {
+    fontSize: "large",
+    fontWeight: "bold"
+  }
 });
