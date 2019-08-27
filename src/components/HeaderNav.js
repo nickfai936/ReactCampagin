@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStyles } from "../styles/headerNav";
 import DatePickerInput from "./DatePicker";
 import SearchForm from "./SearchForm";
@@ -11,6 +11,18 @@ const HeaderNave = props => {
     setSelectedDate(Object.assign({}, selectedDate, { [id]: value }));
   };
 
+  const isDateValid = () => {
+    if (selectedDate.startDate && selectedDate.endDate) {
+      console.log(selectedDate.startDate, selectedDate.endDate);
+      console.log(selectedDate.startDate <= selectedDate.endDate);
+    }
+  };
+
+  useEffect(() => {
+    // window.isDateValid = selectedDate => isDateValid(selectedDate);
+    isDateValid(selectedDate);
+  });
+
   return (
     <div className={classes.headerRow}>
       <div className={classes.headerCol}>
@@ -19,6 +31,7 @@ const HeaderNave = props => {
           name="startDateInput"
           label="Start-Date"
           selectedDate={selectedDate}
+          maxDate={selectedDate.endDate}
           onChange={handleDateChange}
         />
       </div>
@@ -28,6 +41,7 @@ const HeaderNave = props => {
           name="endDateInput"
           label="End-Date"
           selectedDate={selectedDate}
+          minDate={selectedDate.startDate}
           onChange={handleDateChange}
         />
       </div>

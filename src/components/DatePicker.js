@@ -23,6 +23,10 @@ const DatePickerInput = props => {
           value={
             props.selectedDate[props.id] ? props.selectedDate[props.id] : null
           }
+          minDate={props.minDate}
+          maxDate={props.maxDate}
+          minDateMessage="End-date should not be before start-date"
+          maxDateMessage="Start-date should not be after end-date"
           onChange={value => props.onChange(props.id, value)}
         />
       </MuiPickersUtilsProvider>
