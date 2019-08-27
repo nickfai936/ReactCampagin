@@ -1,5 +1,5 @@
 import React from "react";
-import { useStyles } from "../styles/date-picker";
+import { useStyles } from "../styles/datePicker";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
@@ -9,35 +9,22 @@ import {
 const DatePickerInput = props => {
   const classes = useStyles();
 
-  const [selectedDate, setSelectedDate] = React.useState(null);
-  function handleDateChange(date) {
-    setSelectedDate(date);
-  }
-
   return (
     <div className={classes.datePicker}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
+          autoOk
           disableToolbar
           variant="inline"
-          format="MM/dd/yyyy"
+          format="dd/MM/yyyy"
           margin="normal"
-          id="date-picker-inline"
+          id={props.id}
           label={props.label}
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            "aria-label": "change date"
-          }}
+          value={
+            props.selectedDate[props.id] ? props.selectedDate[props.id] : null
+          }
+          onChange={value => props.onChange(props.id, value)}
         />
-        {/* <DatePicker
-          keyboard={true}
-          clearable={true}
-          format="MM/dd/yyyy"
-          label="Basic example"
-          value={props.selectedDate ? null : props.selectedDate}
-          onChange={props.handleDateChange}
-        /> */}
       </MuiPickersUtilsProvider>
     </div>
   );

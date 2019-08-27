@@ -1,5 +1,5 @@
 import React from "react";
-import { useStyles } from "../styles/search-form";
+import { useStyles } from "../styles/searchForm";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import { ReactComponent as SearchIcon } from "./../svg/searchIcon.svg";
