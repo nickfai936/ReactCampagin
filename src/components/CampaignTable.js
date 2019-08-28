@@ -11,10 +11,11 @@ import CampaignStatus from "./CampaignStatus";
 const CampaignTable = props => {
   const classes = useStyles();
   const campaigns = useContext(CampaignContext);
-  const selectedDate = props.location.state.selectedDate;
-  const searchTxt = props.location.state.searchTxt;
+  const selectedDate =
+    props.location.state && props.location.state.selectedDate;
+  const searchTxt = props.location.state && props.location.state.searchTxt;
   const [availableCampaigns, setAvailableCampaigns] = useState([]);
-  console.log(searchTxt && searchTxt.value);
+
   useEffect(() => {
     setAvailableCampaigns(
       campaigns.data.filter(

@@ -9,7 +9,7 @@ const SearchForm = props => {
   const classes = useStyles();
 
   const [searchTxt, setSearchTxt] = useState();
-
+  console.log("searh",props.location.state);
   const handleDateChange = event => {
     setSearchTxt(Object.assign({}, searchTxt, { value: event.target.value }));
   };
@@ -23,7 +23,7 @@ const SearchForm = props => {
       <Link
         to={{
           pathname: "/byDate",
-          state: { searchTxt }
+          state: { ...props.location.state, searchTxt }
         }}
       >
         <IconButton aria-label="search">

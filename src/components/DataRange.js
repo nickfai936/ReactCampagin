@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useStyles } from "../styles/dataRange";
 import DatePicker from "./DatePicker";
 
@@ -10,17 +10,10 @@ const DataRange = props => {
     setSelectedDate(Object.assign({}, selectedDate, { [id]: value }));
   };
 
-  const isDateValid = () => {
-    if (selectedDate.startDate && selectedDate.endDate) {
-      console.log(selectedDate.startDate, selectedDate.endDate);
-      console.log(selectedDate.startDate <= selectedDate.endDate);
-    }
-  };
-
   useEffect(() => {
     props.history.push({
       pathname: "/byDate",
-      state: { selectedDate }
+      state: { ...props.location.state, selectedDate }
     });
   }, [selectedDate, props.history]);
 

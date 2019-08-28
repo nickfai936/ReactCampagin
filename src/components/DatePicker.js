@@ -26,7 +26,6 @@ const DatePicker = props => {
           minDate={props.minDate}
           maxDate={props.maxDate}
           minDateMessage="End-date should not be before start-date"
-          maxDateMessage="Start-date should not be after end-date"
           onChange={value => props.onChange(props.id, value)}
         />
       </MuiPickersUtilsProvider>
