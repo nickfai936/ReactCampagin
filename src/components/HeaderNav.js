@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useStyles } from "../styles/headerNav";
 import DatePickerInput from "./DatePicker";
 import SearchForm from "./SearchForm";
+import { Link } from "react-router-dom";
 
 const HeaderNav = props => {
   const classes = useStyles();
@@ -19,9 +20,11 @@ const HeaderNav = props => {
   };
 
   useEffect(() => {
-    // window.isDateValid = selectedDate => isDateValid(selectedDate);
-    isDateValid(selectedDate);
-  });
+    props.history.push({
+      pathname: "/byDate",
+      state: { selectedDate }
+    });
+  }, [selectedDate, props.history]);
 
   return (
     <div className={classes.headerRow}>

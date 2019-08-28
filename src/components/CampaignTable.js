@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useStyles } from "../styles/campaginTable";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,6 +11,19 @@ import CampaignStatus from "./CampaignStatus";
 const CampaignTable = props => {
   const classes = useStyles();
   const campaigns = useContext(CampaignContext);
+  const selectedDate =
+    props.location.state && props.location.state.selectedDate;
+  const [availableCampaigns, setAvailableCampaigns] = useState([]);
+
+  useEffect(() => {
+    setAvailableCampaigns(
+      campaigns.data.filter(
+        campaign =>
+          !selectedDate.startDate ||
+          Date.parse(campaign.startDate) >= selectedDate.startDate
+      )
+    );
+  }, [campaigns, selectedDate]);
 
   return (
     <div className={classes.tableRoot}>
@@ -25,7 +38,7 @@ const CampaignTable = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {campaigns.data.map(row => (
+          {availableCampaigns.map(row => (
             <TableRow key={row.id}>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.startDate}</TableCell>

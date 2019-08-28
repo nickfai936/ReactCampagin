@@ -4,15 +4,15 @@ const campaigns = {
     {
       id: 1,
       name: "Divavu",
-      startDate: "9/19/2017",
-      endDate: "3/9/2018",
+      startDate: "8/19/2019",
+      endDate: "9/9/2019",
       Budget: 88377
     },
     {
       id: 2,
       name: "Jaxspan",
-      startDate: "11/21/2017",
-      endDate: "2/21/2018",
+      startDate: "11/21/2019",
+      endDate: "12/21/2019",
       Budget: 608715
     }
   ]
