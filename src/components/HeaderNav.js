@@ -3,7 +3,7 @@ import { useStyles } from "../styles/headerNav";
 import DatePickerInput from "./DatePicker";
 import SearchForm from "./SearchForm";
 
-const HeaderNave = props => {
+const HeaderNav = props => {
   const classes = useStyles();
 
   const [selectedDate, setSelectedDate] = useState({});
@@ -52,4 +52,4 @@ const HeaderNave = props => {
   );
 };
 
-export default HeaderNave;
+export default HeaderNav;

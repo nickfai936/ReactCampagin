@@ -6,16 +6,17 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import CampaignContext from "../CampaignContext";
+import CampaignStatus from "./CampaignStatus";
 
 const CampaignTable = props => {
   const classes = useStyles();
   const campaigns = useContext(CampaignContext);
 
   return (
-    <div>
+    <div className={classes.tableRoot}>
       <Table>
-        <TableHead>
-          <TableRow className={classes.tableHeader}>
+        <TableHead className={classes.tableHeader}>
+          <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Start Date</TableCell>
             <TableCell>End Date</TableCell>
@@ -30,9 +31,13 @@ const CampaignTable = props => {
               <TableCell>{row.startDate}</TableCell>
               <TableCell>{row.endDate}</TableCell>
               <TableCell>
-                {Date.parse(row.endDate) < new Date() ? "Inactive" : "Active"}
+                <CampaignStatus
+                  status={Date.parse(row.endDate) >= new Date()}
+                />
               </TableCell>
-              <TableCell>{row.Budget}</TableCell>
+              <TableCell>
+                {row.Budget} {campaigns.currencyCode}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -1,15 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
-  tableRoot: {
-    width: "100%",
-    overflowX: "auto"
-  },
-  tableHeader: {
-    fontSize: "large",
-    fontWeight: "bold"
-  },
-  statusCell: {
+  status: {
     display: "flex"
   },
   circle: {
@@ -17,7 +9,7 @@ export const useStyles = makeStyles({
     width: "15px",
     height: "15px",
     borderRadius: "50%",
-    backgroundColor: "red",
+    backgroundColor: props => (props.status ? "green" : "red"),
     alignSelf: "center",
     margin: "0 8px"
   }

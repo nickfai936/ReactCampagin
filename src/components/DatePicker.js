@@ -6,7 +6,7 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
-const DatePickerInput = props => {
+const DatePicker = props => {
   const classes = useStyles();
 
   return (
@@ -34,4 +34,4 @@ const DatePickerInput = props => {
   );
 };
 
-export default DatePickerInput;
+export default DatePicker;
