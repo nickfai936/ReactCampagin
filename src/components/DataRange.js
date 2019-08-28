@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useStyles } from "../styles/headerNav";
-import DatePickerInput from "./DatePicker";
-import SearchForm from "./SearchForm";
-import { Link } from "react-router-dom";
+import { useStyles } from "../styles/dataRange";
+import DatePicker from "./DatePicker";
 
-const HeaderNav = props => {
+const DataRange = props => {
   const classes = useStyles();
 
   const [selectedDate, setSelectedDate] = useState({});
@@ -27,19 +25,18 @@ const HeaderNav = props => {
   }, [selectedDate, props.history]);
 
   return (
-    <div className={classes.headerRow}>
-      <div className={classes.headerCol}>
-        <DatePickerInput
+    <div className={classes.row}>
+      <div className={classes.col}>
+        <DatePicker
           id="startDate"
           name="startDateInput"
           label="Start-Date"
           selectedDate={selectedDate}
-          maxDate={selectedDate.endDate}
           onChange={handleDateChange}
         />
       </div>
-      <div className={classes.headerCol}>
-        <DatePickerInput
+      <div className={classes.col}>
+        <DatePicker
           id="endDate"
           name="endDateInput"
           label="End-Date"
@@ -48,11 +45,8 @@ const HeaderNav = props => {
           onChange={handleDateChange}
         />
       </div>
-      <div className={classes.headerCol}>
-        <SearchForm />
-      </div>
     </div>
   );
 };
 
-export default HeaderNav;
+export default DataRange;

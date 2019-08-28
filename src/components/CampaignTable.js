@@ -11,19 +11,24 @@ import CampaignStatus from "./CampaignStatus";
 const CampaignTable = props => {
   const classes = useStyles();
   const campaigns = useContext(CampaignContext);
-  const selectedDate =
-    props.location.state && props.location.state.selectedDate;
+  const selectedDate = props.location.state.selectedDate;
+  const searchTxt = props.location.state.searchTxt;
   const [availableCampaigns, setAvailableCampaigns] = useState([]);
-
+  console.log(searchTxt && searchTxt.value);
   useEffect(() => {
     setAvailableCampaigns(
       campaigns.data.filter(
         campaign =>
-          !selectedDate.startDate ||
-          Date.parse(campaign.startDate) >= selectedDate.startDate
+          (!selectedDate ||
+            !selectedDate.startDate ||
+            Date.parse(campaign.startDate) >= selectedDate.startDate) &&
+          (!selectedDate ||
+            !selectedDate.endDate ||
+            Date.parse(campaign.endDate) <= selectedDate.endDate) &&
+          (!searchTxt || !searchTxt.value || campaign.name === searchTxt.value)
       )
     );
-  }, [campaigns, selectedDate]);
+  }, [campaigns, selectedDate, searchTxt]);
 
   return (
     <div className={classes.tableRoot}>
