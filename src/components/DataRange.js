@@ -6,6 +6,7 @@ const DataRange = props => {
   const classes = useStyles();
 
   const [selectedDate, setSelectedDate] = useState({});
+  
   const handleDateChange = (id, value) => {
     setSelectedDate(Object.assign({}, selectedDate, { [id]: value }));
   };
