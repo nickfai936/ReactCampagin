@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 const SearchForm = props => {
   const classes = useStyles();
 
-  const [searchTxt, setSearchTxt] = useState();
-  console.log("searh",props.location.state);
+  const [searchTxt, setSearchTxt] = useState({});
+
   const handleDateChange = event => {
     setSearchTxt(Object.assign({}, searchTxt, { value: event.target.value }));
   };
@@ -22,7 +22,8 @@ const SearchForm = props => {
       />
       <Link
         to={{
-          pathname: "/byDate",
+          pathname: "/filter",
+          search: `search=${searchTxt.value ? searchTxt.value : ""}`,
           state: { ...props.location.state, searchTxt }
         }}
       >

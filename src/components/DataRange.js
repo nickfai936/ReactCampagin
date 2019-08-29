@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "../styles/dataRange";
 import DatePicker from "./DatePicker";
 
@@ -11,11 +11,16 @@ const DataRange = props => {
   };
 
   useEffect(() => {
-    props.history.push({
-      pathname: "/byDate",
-      state: { ...props.location.state, selectedDate }
-    });
-  }, [selectedDate, props.history]);
+    if (
+      !props.location.state ||
+      props.location.state.selectedDate !== selectedDate
+    ) {
+      props.history.push({
+        pathname: "/filter",
+        state: { ...props.location.state, selectedDate }
+      });
+    }
+  }, [selectedDate, props.history, props.location.state]);
 
   return (
     <div className={classes.row}>

@@ -22,10 +22,12 @@ const CampaignTable = props => {
         campaign =>
           (!selectedDate ||
             !selectedDate.startDate ||
-            Date.parse(campaign.startDate) >= selectedDate.startDate) &&
+            new Date(campaign.startDate).setHours(0, 0, 0, 0) >=
+              selectedDate.startDate.setHours(0, 0, 0, 0)) &&
           (!selectedDate ||
             !selectedDate.endDate ||
-            Date.parse(campaign.endDate) <= selectedDate.endDate) &&
+            new Date(campaign.endDate).setHours(0, 0, 0, 0) <=
+              selectedDate.endDate.setHours(0, 0, 0, 0)) &&
           (!searchTxt || !searchTxt.value || campaign.name === searchTxt.value)
       )
     );
