@@ -12,8 +12,9 @@ const DataRange = props => {
 
   useEffect(() => {
     if (
-      !props.location.state ||
-      props.location.state.selectedDate !== selectedDate
+      (!props.location.state ||
+        props.location.state.selectedDate !== selectedDate) &&
+      Object.keys(selectedDate).length !== 0
     ) {
       props.history.push({
         pathname: "/filter",

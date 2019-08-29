@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import CampaignContext from "./CampaignContext";
 import preloadedCampaigns from "./campaigns";
 import MainPage from "./pages/MainPage";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 const App = props => {
   const [campaigns, setCampaigns] = useState(preloadedCampaigns);
@@ -37,6 +37,7 @@ const App = props => {
     <BrowserRouter>
       <CampaignContext.Provider value={campaigns}>
         <div className="container">
+          {!props.location && <Redirect to="/" />}
           <Switch>
             <Route path="/" component={MainPage} />
           </Switch>
