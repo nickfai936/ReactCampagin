@@ -10,23 +10,12 @@ const App = props => {
   const [campaigns, setCampaigns] = useState(preloadedCampaigns);
 
   const AddCampaigns = newData => {
-    // const updatedCampaigns = Object.assign({}, campaigns, {
-    //   data: Object.values({
-    //     ...campaigns.data,
-    //     ...[...campaigns.data, ...newData]
-    //   })
-    // });
-    // console.log(updatedCampaigns.data);
-    // console.log({ ...newData });
-    // console.log({...[ ...campaigns.data, ...newData ]});
-    // console.log([ ...campaigns.data, ...newData ]);
-    // console.log(...Object.values({ ...campaigns.data }));
-    // console.log(...Object.values({ ...newData }));
-    // console.log(Object.assign(...campaigns.data, ...newData));
-    // const a = { ...campaigns.data, ...[ ...campaigns.data, ...newData ] };
-    // console.log(Object.values(a));
     const updatedCampaigns = Object.assign({}, campaigns, {
-      data: [...campaigns.data, ...newData]
+      data: Object.values(
+        [...campaigns.data, ...newData].reduce((newList, campaign) => {
+          return { ...newList, ...{ [campaign.id]: campaign } };
+        }, {})
+      )
     });
     setCampaigns(updatedCampaigns);
   };
@@ -36,12 +25,10 @@ const App = props => {
   return (
     <BrowserRouter>
       <CampaignContext.Provider value={campaigns}>
-        <div className="container">
-          {!props.location && <Redirect to="/" />}
-          <Switch>
-            <Route path="/" component={MainPage} />
-          </Switch>
-        </div>
+        {!props.location && <Redirect to="/" />}
+        <Switch>
+          <Route path="/" component={MainPage} />
+        </Switch>
       </CampaignContext.Provider>
     </BrowserRouter>
   );
