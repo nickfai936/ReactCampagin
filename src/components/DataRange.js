@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { useStyles } from "../styles/dataRange";
 import DatePicker from "./DatePicker";
 
 const DataRange = props => {
   const classes = useStyles();
 
-  const [selectedDate, setSelectedDate] = useState({});
-  
-  const handleDateChange = (id, value) => {
-    setSelectedDate(Object.assign({}, selectedDate, { [id]: value }));
+  const reducer = (selectedDate, action) => {
+    switch (action.id) {
+      case "startDate":
+        return Object.assign({}, selectedDate, { startDate: action.value });
+      case "endDate":
+        return Object.assign({}, selectedDate, { endDate: action.value });
+      default:
+        return selectedDate;
+    }
   };
+
+  const [selectedDate, handleDateChange] = useReducer(reducer, {});
 
   useEffect(() => {
     if (
