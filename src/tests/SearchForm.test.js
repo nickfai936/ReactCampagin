@@ -54,6 +54,5 @@ describe("<SearchForm>", () => {
       target: { value: "testing" }
     });
     expect(InputBase).toHaveValue("testing");
-    expect(container.state.searchTxt).toBe(false);
   });
 });

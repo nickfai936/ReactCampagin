@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from "react";
-import { useStyles } from "../styles/dataRange";
+import { useStyles } from "../styles/dateRange";
 import DatePicker from "./DatePicker";
 
-const DataRange = props => {
+const DateRange = props => {
   const classes = useStyles();
 
   const reducer = (selectedDate, action) => {
@@ -38,7 +38,7 @@ const DataRange = props => {
           id="startDate"
           name="startDateInput"
           label="Start-Date"
-          selectedDate={selectedDate}
+          selectedDate={selectedDate.startDate}
           onChange={handleDateChange}
         />
       </div>
@@ -47,7 +47,7 @@ const DataRange = props => {
           id="endDate"
           name="endDateInput"
           label="End-Date"
-          selectedDate={selectedDate}
+          selectedDate={selectedDate.endDate}
           minDate={selectedDate.startDate}
           onChange={handleDateChange}
         />
@@ -56,4 +56,4 @@ const DataRange = props => {
   );
 };
 
-export default DataRange;
+export default DateRange;

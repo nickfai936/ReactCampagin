@@ -20,9 +20,7 @@ const DatePicker = props => {
           margin="normal"
           id={props.id}
           label={props.label}
-          value={
-            props.selectedDate[props.id] ? props.selectedDate[props.id] : null
-          }
+          value={props.selectedDate || null}
           minDate={props.minDate}
           maxDate={props.maxDate}
           minDateMessage="End-date should not be before start-date"

@@ -1,5 +1,5 @@
 import React from "react";
-import DataRange from "../components/DataRange";
+import DateRange from "../components/DateRange";
 import CampaignTable from "../components/CampaignTable";
 import SearchForm from "../components/SearchForm";
 import { useStyles } from "../styles/mainPage";
@@ -11,7 +11,7 @@ const MainPage = props => {
     <div className={classes.container}>
       <div className={classes.headerRow}>
         <div className={classes.headerCol}>
-          <DataRange {...props} />
+          <DateRange {...props} />
         </div>
         <div className={classes.headerCol}>
           <SearchForm {...props} />
