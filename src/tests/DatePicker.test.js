@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "@testing-library/jest-dom/extend-expect";
+import { fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import DatePicker from "../components/DatePicker";
 
@@ -24,6 +25,7 @@ describe("<DatePicker>", () => {
         container
       );
     });
+
     const startDate = container.querySelector('[id="startDate"]');
     expect(startDate).not.toHaveValue();
   });
@@ -40,7 +42,30 @@ describe("<DatePicker>", () => {
         container
       );
     });
+
     const startDate = container.querySelector('[id="startDate"]');
     expect(startDate).toHaveValue("08/25/2019");
+  });
+
+  it("can call onChange", () => {
+    const onChange = jest.fn();
+
+    act(() => {
+      ReactDOM.render(
+        <DatePicker
+          id="startDate"
+          name="startDateInput"
+          label="Start-Date"
+          selectedDate={new Date("08/25/2019")}
+          onChange={onChange}
+        />,
+        container
+      );
+    });
+
+    const startDate = container.querySelector('[id="startDate"]');
+    expect(startDate).toHaveValue("08/25/2019");
+    fireEvent.change(startDate, { target: { value: null } });
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 });

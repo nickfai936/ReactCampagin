@@ -24,12 +24,13 @@ describe("<SearchForm>", () => {
       ReactDOM.render(
         <BrowserRouter>
           <Switch>
-            <Route path="/" component={SearchForm} />
+            <Route render={props => <SearchForm {...props} />} />
           </Switch>
         </BrowserRouter>,
         container
       );
     });
+
     const InputBase = container.querySelector('[id="searchInput"]');
     expect(InputBase).toHaveAttribute("placeholder", "Search");
     expect(InputBase).not.toHaveValue();
@@ -43,12 +44,13 @@ describe("<SearchForm>", () => {
       ReactDOM.render(
         <BrowserRouter>
           <Switch>
-            <Route path="/" component={SearchForm} />
+            <Route render={props => <SearchForm {...props} />} />
           </Switch>
         </BrowserRouter>,
         container
       );
     });
+
     const InputBase = container.querySelector('[id="searchInput"]');
     fireEvent.change(InputBase, {
       target: { value: "testing" }
