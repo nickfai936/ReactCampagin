@@ -10,15 +10,16 @@ const SearchForm = props => {
 
   const [searchTxt, setSearchTxt] = useState({});
 
-  const handleDateChange = event => {
+  const handleSearchChange = event => {
     setSearchTxt(Object.assign({}, searchTxt, { value: event.target.value }));
   };
 
   return (
     <div className={classes.searchForm}>
       <InputBase
+        id="searchInput"
         placeholder="Search"
-        onChange={event => handleDateChange(event)}
+        onChange={event => handleSearchChange(event)}
       />
       <Link
         to={{
@@ -27,8 +28,8 @@ const SearchForm = props => {
           state: { ...props.location.state, searchTxt }
         }}
       >
-        <IconButton aria-label="search">
-          <SearchIcon />
+        <IconButton id="searchIconButton">
+          <SearchIcon id="searchIcon" />
         </IconButton>
       </Link>
     </div>
