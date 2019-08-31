@@ -26,7 +26,7 @@ describe("<DatePicker>", () => {
       );
     });
 
-    const startDate = container.querySelector('[id="startDate"]');
+    const startDate = container.querySelector('[id="kdp-startDate"]');
     expect(startDate).not.toHaveValue();
   });
 
@@ -43,7 +43,7 @@ describe("<DatePicker>", () => {
       );
     });
 
-    const startDate = container.querySelector('[id="startDate"]');
+    const startDate = container.querySelector('[id="kdp-startDate"]');
     expect(startDate).toHaveValue("08/25/2019");
   });
 

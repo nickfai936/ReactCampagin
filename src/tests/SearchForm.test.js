@@ -39,7 +39,7 @@ describe("<SearchForm>", () => {
     expect(IconButton).toContainElement(SearchIcon);
   });
 
-  it("can search", () => {
+  it("can input search", () => {
     act(() => {
       ReactDOM.render(
         <BrowserRouter>
@@ -56,5 +56,21 @@ describe("<SearchForm>", () => {
       target: { value: "testing" }
     });
     expect(InputBase).toHaveValue("testing");
+  });
+
+  it("can render correct search link", () => {
+    act(() => {
+      ReactDOM.render(
+        <BrowserRouter>
+          <Switch>
+            <Route render={props => <SearchForm {...props} />} />
+          </Switch>
+        </BrowserRouter>,
+        container
+      );
+    });
+
+    const searchLink = container.querySelector('[id="searchLink"]');
+    expect(searchLink.href).toBe("http://localhost/filter?search=");
   });
 });

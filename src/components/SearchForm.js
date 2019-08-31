@@ -22,6 +22,7 @@ const SearchForm = props => {
         onChange={event => handleSearchChange(event)}
       />
       <Link
+        id="searchLink"
         to={{
           pathname: "/filter",
           search: `search=${searchTxt.value ? searchTxt.value : ""}`,
