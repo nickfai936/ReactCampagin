@@ -18,7 +18,7 @@ const DatePicker = props => {
           variant="inline"
           format="MM/dd/yyyy"
           margin="normal"
-          id={props.id}
+          id={`kdp-${props.id}`}
           label={props.label}
           value={props.selectedDate || null}
           minDate={props.minDate}
