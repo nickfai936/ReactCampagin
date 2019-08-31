@@ -1,14 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import { act } from "react-dom/test-utils";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DateRange from "../components/DateRange";
 import { fireEvent } from "@testing-library/dom";
-
-configure({ adapter: new Adapter() });
 
 let container;
 
@@ -34,6 +30,7 @@ describe("<DateRange>", () => {
         container
       );
     });
+
     const startDate = container.querySelector('[id="kdp-startDate"]');
     const endDate = container.querySelector('[id="kdp-endDate"]');
     expect(startDate).not.toHaveValue();
@@ -51,6 +48,7 @@ describe("<DateRange>", () => {
         container
       );
     });
+
     const startDate = container.querySelector('[id="kdp-startDate"]');
     const endDate = container.querySelector('[id="kdp-endDate"]');
     fireEvent.change(startDate, {
@@ -78,6 +76,7 @@ describe("<DateRange>", () => {
         container
       );
     });
+
     const startDate = container.querySelector('[id="kdp-startDate"]');
     const endDate = container.querySelector('[id="kdp-endDate"]');
     fireEvent.change(startDate, {

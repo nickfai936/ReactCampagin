@@ -32,13 +32,13 @@ describe("<SearchForm>", () => {
     });
 
     const InputBase = container.querySelector('[id="searchInput"]');
-    expect(InputBase).toHaveAttribute("placeholder", "Search");
-    expect(InputBase).not.toHaveValue();
-
     const IconButton = container.querySelector('[id="searchIconButton"]');
     const SearchIcon = container.querySelector('[id="searchIcon"]');
+    expect(InputBase).toHaveAttribute("placeholder", "Search");
+    expect(InputBase).not.toHaveValue();
     expect(IconButton).toContainElement(SearchIcon);
   });
+
   it("can search", () => {
     act(() => {
       ReactDOM.render(

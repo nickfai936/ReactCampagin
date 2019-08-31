@@ -63,7 +63,7 @@ describe("<DatePicker>", () => {
       );
     });
 
-    const startDate = container.querySelector('[id="startDate"]');
+    const startDate = container.querySelector('[id="kdp-startDate"]');
     expect(startDate).toHaveValue("08/25/2019");
     fireEvent.change(startDate, { target: { value: null } });
     expect(onChange).toHaveBeenCalledTimes(1);

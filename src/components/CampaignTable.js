@@ -55,11 +55,14 @@ const CampaignTable = props => {
               <TableCell>{row.endDate}</TableCell>
               <TableCell>
                 <CampaignStatus
-                  status={Date.parse(row.endDate) >= new Date()}
+                  status={
+                    Date.parse(row.startDate) <= new Date() &&
+                    Date.parse(row.endDate) >= new Date()
+                  }
                 />
               </TableCell>
               <TableCell>
-                {row.Budget} {campaigns.currencyCode}
+                {row.budget} {campaigns.currencyCode}
               </TableCell>
             </TableRow>
           ))}
