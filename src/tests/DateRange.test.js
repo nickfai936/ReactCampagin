@@ -54,38 +54,40 @@ describe("<DateRange>", () => {
     const startDate = container.querySelector('[id="kdp-startDate"]');
     const endDate = container.querySelector('[id="kdp-endDate"]');
     fireEvent.change(startDate, {
-      target: { value: "08/38/2019" }
+      target: { value: "08/36/2019" }
     });
-    console.log(container.querySelector('[id="kdp-startDate-helper-text"]'));
+    fireEvent.change(endDate, {
+      target: { value: "13/12/2019" }
+    });
     expect(
       container.querySelector('[id="kdp-startDate-helper-text"]').textContent
     ).toBe("Invalid Date Format");
-    // expect(startDate).not.toHaveValue();
-    // expect(endDate).not.toHaveValue();
+    expect(
+      container.querySelector('[id="kdp-endDate-helper-text"]').textContent
+    ).toBe("Invalid Date Format");
   });
 
   it("error if start date after end date", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Switch>
-          <Route render={props => <DateRange native={true} {...props} />} />
-        </Switch>
-      </BrowserRouter>
-    );
-    // const startDate = wrapper.find("DatePicker").at(0);
-    // console.log(startDate.length);
-    // console.log(startDate.prop("id"));
-    // console.log(startDate.prop("value"));
-    // console.log(wrapper.find("DatePicker").length);
-    // const event = {
-    //   target: { name: "startDateInput", value: new Date() }
-    // };
-    // console.log(
-    //   startDate.simulate("change", event)
-    //   // .prop("onChange")()
-    // );
-    // console.log(startDate.prop("value"));
-    // console.log(startDate.prop("selectedDate"));
-    // expect(wrapper.find("DatePicker")).toHaveProp("id", "startDate");
+    act(() => {
+      ReactDOM.render(
+        <BrowserRouter>
+          <Switch>
+            <Route render={props => <DateRange {...props} />} />
+          </Switch>
+        </BrowserRouter>,
+        container
+      );
+    });
+    const startDate = container.querySelector('[id="kdp-startDate"]');
+    const endDate = container.querySelector('[id="kdp-endDate"]');
+    fireEvent.change(startDate, {
+      target: { value: "08/30/2019" }
+    });
+    fireEvent.change(endDate, {
+      target: { value: "08/20/2019" }
+    });
+    expect(
+      container.querySelector('[id="kdp-endDate-helper-text"]').textContent
+    ).toBe("End-date should not be before start-date");
   });
 });
