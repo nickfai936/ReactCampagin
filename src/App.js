@@ -10,14 +10,18 @@ const App = props => {
   const [campaigns, setCampaigns] = useState(preloadedCampaigns);
 
   const AddCampaigns = newData => {
-    const updatedCampaigns = Object.assign({}, campaigns, {
-      data: Object.values(
-        [...campaigns.data, ...newData].reduce((newList, campaign) => {
-          return { ...newList, ...{ [campaign.id]: campaign } };
-        }, {})
-      )
-    });
-    setCampaigns(updatedCampaigns);
+    try {
+      const updatedCampaigns = Object.assign({}, campaigns, {
+        data: Object.values(
+          [...campaigns.data, ...newData].reduce((newList, campaign) => {
+            return { ...newList, ...{ [campaign.id]: campaign } };
+          }, {})
+        )
+      });
+      setCampaigns(updatedCampaigns);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   window.AddCampaigns = AddCampaigns;
