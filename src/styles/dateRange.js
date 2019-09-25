@@ -1,4 +1,4 @@
 export const useStyles = () => ({
-  row: "d-inline-flex flex-column flex-sm-row justify-content-around ",
+  row: "d-inline-flex flex-row justify-content-around ",
   col: "align-self-end"
 });

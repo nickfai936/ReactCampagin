@@ -20,18 +20,28 @@ const CampaignTable = props => {
 
   useEffect(() => {
     setAvailableCampaigns(
-      campaigns.data.filter(
-        campaign =>
-          (!selectedDate ||
-            !selectedDate.startDate ||
-            new Date(campaign.startDate).setHours(0, 0, 0, 0) >=
-              selectedDate.startDate.setHours(0, 0, 0, 0)) &&
-          (!selectedDate ||
-            !selectedDate.endDate ||
-            new Date(campaign.endDate).setHours(0, 0, 0, 0) <=
-              selectedDate.endDate.setHours(0, 0, 0, 0)) &&
-          (!searchTxt || !searchTxt.value || campaign.name === searchTxt.value)
-      )
+      campaigns.data.filter(campaign => {
+        const isWithinSelectedStartDate =
+          !selectedDate ||
+          !selectedDate.startDate ||
+          new Date(campaign.startDate).setHours(0, 0, 0, 0) >=
+            selectedDate.startDate.setHours(0, 0, 0, 0);
+
+        const isWithinSelectedEndDate =
+          !selectedDate ||
+          !selectedDate.endDate ||
+          new Date(campaign.endDate).setHours(0, 0, 0, 0) <=
+            selectedDate.endDate.setHours(0, 0, 0, 0);
+
+        const isSearchTextMatch =
+          !searchTxt || !searchTxt.value || campaign.name === searchTxt.value;
+
+        return (
+          isWithinSelectedStartDate &&
+          isWithinSelectedEndDate &&
+          isSearchTextMatch
+        );
+      })
     );
   }, [campaigns, selectedDate, searchTxt]);
 
